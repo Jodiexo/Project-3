@@ -30,10 +30,22 @@ app.get('/users', async (req, res) => {
 });
 // Get a specific user by ID
 app.get('/users/:id', async (req, res) => {
+  try {
+    const user = await db('users').where({ id:req.params.id }).first();
+    res.json(user);
+  } catch (error) {
+    res.status(503).json({error: 'Database error'});
+  }
   res.send('Everyone in the Army wants to be in the Space Force')
 })
 // Get all chats
 app.get('/chats', (req, res) => {
+  try {
+    const users = await db('chats').select('*');
+    res.json(users);
+  } catch (error) {
+    res.status(503).json({ error: 'Database error' });
+  }
   res.send('Everyone in the Army wants to be in the Space Force')
 })
 // Get a specific chat by Id
@@ -41,7 +53,10 @@ app.get('/chat/:id', (req, res) => {
   res.send('Everyone in the Army wants to be in the Space Force')
 })
 // Post a new message
-app.post('/messages', (req, res) => {
+app.post('/messages', async (req, res) => {
+  try {
+    
+  }
   res.send('Post to /messages')
 })
 // Post a new sign up
