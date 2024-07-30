@@ -5,7 +5,10 @@ const bodyParser = require('body-parser');
 // const knexConfig = require('./knexfile');
 const port = process.env.port || 5000;
 
-
+const user = {
+  id: 69420,
+  username: 'John Doe'
+}
 
 const app = express();
 // Server start
@@ -31,7 +34,7 @@ app.get('/users', async (req, res) => {
 // Get a specific user by ID
 app.get('/users/:id', async (req, res) => {
   try {
-    const user = await db('users').where({ id:req.params.id }).first();
+    // const user = await db('users').where({ id:req.params.id }).first();
     res.json(user);
   } catch (error) {
     res.status(503).json({error: 'Database error'});
