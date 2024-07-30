@@ -39,28 +39,39 @@ app.get('/users/:id', async (req, res) => {
   res.send('Everyone in the Army wants to be in the Space Force')
 })
 // Get all chats
-app.get('/chats', (req, res) => {
+app.get('/chats', async (req, res) => {
   try {
-    const users = await db('chats').select('*');
-    res.json(users);
+    const chats = await db('chats').select('*');
+    res.json(chats);
   } catch (error) {
     res.status(503).json({ error: 'Database error' });
   }
   res.send('Everyone in the Army wants to be in the Space Force')
 })
 // Get a specific chat by Id
-app.get('/chat/:id', (req, res) => {
+app.get('/chat/:id', async (req, res) => {
+  try {
+    const chat = await db('chats').where({ id:req.params.id }).first();
+    res.json(chat);
+  } catch (error) {
+    res.status(503).json({error: 'Database error'});
+  }
   res.send('Everyone in the Army wants to be in the Space Force')
 })
 // Post a new message
 app.post('/messages', async (req, res) => {
   try {
-    
+    const { content, user_id, chat_id } = req.body;
+    const [id] = await db('messages').insert({ content, user_id, chat_id }).returning('id');
+    const message = await db('messages').where({ id }).first();
+    res.status(201).json(message);
+  } catch (error) {
+    res.status(503).json({ error: 'Database error' }); 
   }
   res.send('Post to /messages')
 })
 // Post a new sign up
-app.post('/signup', (req, res) => {
+app.post('/signup', async (req, res) => {
   res.send('Post to /account')
 })
 
