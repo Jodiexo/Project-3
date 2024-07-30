@@ -1,12 +1,16 @@
-import react from 'react';
-import {BrowserRouter as Router, Route, Swtich} from 'react-router-dom'
-import { useEffect, useState } from 'react';
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const Home = () => {
+  const navigate = useNavigate();
+
+  const handleLogout = (e)
+
+
   return(
-    <div>
-      <p>Home</p>
-    </div>
+    <>
+      <h1>Home</h1>
+    </>
   )
 }
 

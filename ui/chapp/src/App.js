@@ -11,7 +11,7 @@ function App() {
         <h1>WELCOME TO CHAPP!</h1>
         <Routes>
           <Route path="/" element={<Login />} />
-          {/* <Route path="/create-account" element={<CreateAccount />} /> */}
+          <Route path="/create-account" element={<CreateAccount />} />
           <Route path="/home" element={<Home />} />
         </Routes>
       </div>
