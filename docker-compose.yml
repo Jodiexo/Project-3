@@ -45,3 +45,19 @@ services:
     networks:
       - chapp-network
 
+  client:
+    build: ./ui
+    depends_on:
+      - server
+    ports:
+      - 3000:3000
+    volumes:
+      - type: bind
+        source: ./ui
+        target: /app/src
+    networks:
+      - chapp-network
+
+networks:
+  chapp-network:
+    driver: bridge
