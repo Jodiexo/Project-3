@@ -6,8 +6,8 @@ const bodyParser = require('body-parser');
 const port = process.env.port || 5000;
 
 const user = {
-  id: 69420,
-  username: 'John Doe'
+  "id": 69420,
+  "username": 'John Doe'
 }
 
 const app = express();
@@ -34,12 +34,11 @@ app.get('/users', async (req, res) => {
 // Get a specific user by ID
 app.get('/users/:id', async (req, res) => {
   try {
-    // const user = await db('users').where({ id:req.params.id }).first();
-    res.json(user);
+    const user = await db('users').where({ id:req.params.id }).first();
+    res.status(200).json(user);
   } catch (error) {
     res.status(503).json({error: 'Database error'});
   }
-  res.send('Everyone in the Army wants to be in the Space Force')
 })
 // Get all chats
 app.get('/chats', async (req, res) => {
