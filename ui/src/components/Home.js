@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+// import { Box, Heading } from '@chakra-ui/react';
 
 const Home = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(true);
