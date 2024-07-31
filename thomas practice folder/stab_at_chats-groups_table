@@ -1,6 +1,0 @@
-exports.up = function (knex) {
-  return knex.schema.createTable(' something ', function (table) {
-    table. //chatid
-    table.string('chat_name').notNullable();
-  })
-}
