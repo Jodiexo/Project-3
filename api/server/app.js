@@ -5,34 +5,38 @@ const bodyParser = require('body-parser');
 // const knexConfig = require('./knexfile');
 const port = process.env.port || 5000;
 
+<<<<<<< HEAD
 const user = {
   "id": 69420,
   "username": 'John Doe'
 }
 
+=======
+>>>>>>> main
 const app = express();
 // Server start
-app.listen(port, console.log(`server running on port ${port}`))
+app.listen(port, console.log(`server running on port ${port}`));
 
 app.use(cors());
 app.use(bodyParser.json());
 
 // Home route
 app.get('/', (req, res) => {
-    res.send('Space Force isnt a real branch');
+  res.send('Space Force isnt a real branch');
 });
 // Get all users
-app.get('/users', async (req, res) => { 
+app.get('/users', async (req, res) => {
   try {
     const users = await db('users').select('*');
     res.json(users);
   } catch (error) {
     res.status(503).json({ error: 'Database error' });
   }
-    res.send('Everyone in the Army wants to be in the Space Force')
+  res.send('Everyone in the Army wants to be in the Space Force');
 });
 // Get a specific user by ID
 app.get('/users/:id', async (req, res) => {
+<<<<<<< HEAD
   try {
     const user = await db('users').where({ id:req.params.id }).first();
     res.status(200).json(user);
@@ -76,4 +80,28 @@ app.post('/messages', async (req, res) => {
 app.post('/signup', async (req, res) => {
   res.send('Post to /account')
 })
+=======
+  res.send('Everyone in the Army wants to be in the Space Force');
+});
+// Get all chats
+app.get('/chats', (req, res) => {
+  res.send('Everyone in the Army wants to be in the Space Force');
+});
+// Get a specific chat by Id
+app.get('/chat/:id', (req, res) => {
+  res.send('Everyone in the Army wants to be in the Space Force');
+});
+// Post a new message
+app.post('/messages', (req, res) => {
+  res.send('Post to /messages');
+});
+// Post a new sign up
+app.post('/signup', (req, res) => {
+  res.send('Post to /account');
+});
+>>>>>>> main
 
+const authRoutes = require('./routes/auth'); //checks if user password matches via routes
+app.use('/fix route', authRoutes);
+
+module.exports = app;
