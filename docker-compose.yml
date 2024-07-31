@@ -53,7 +53,7 @@ services:
     volumes:
       - type: bind
         source: ./ui
-        target: /app/src
+        target: /app
     networks:
       - chapp-network
 

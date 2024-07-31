@@ -1,5 +1,4 @@
 import React, { createContext, useState } from 'react';
-import PropTypes from 'prop-types';
 import { v4 as uuidv4 } from 'uuid';
 
 const LoginContext = createContext({
@@ -49,9 +48,4 @@ const LoginProvider = ({ children }) => {
     </LoginContext.Provider>
   );
 };
-
-LoginProvider.propTypes = {
-  children: PropTypes.node.isRequired,
-};
-
 export { LoginContext, LoginProvider };

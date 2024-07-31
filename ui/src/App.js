@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
-import Login from './components/login';
-// import CreateAccount from './components/CreateAccount';
+import Login from './components/Login';
+import CreateAccount from './components/CreateAccount';
 import Home from './components/Home';
 
 function App() {
