@@ -48,6 +48,6 @@ app.post('/signup', (req, res) => {
 });
 
 const authRoutes = require('./routes/auth'); //checks if user password matches via routes
-app.use('/api/auth', authRoutes);
+app.use('/fix route', authRoutes);
 
 module.exports = app;

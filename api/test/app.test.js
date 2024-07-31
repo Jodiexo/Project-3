@@ -1,5 +1,5 @@
 const request = require('supertest')
-const app = require('./app.js')
+const app = require('../app.js')
 
 // beforeAll(async () => {
 //   await knex.migrate.latest();
@@ -18,3 +18,5 @@ describe('GET /users/1')
 describe('GET /admin/users')
 
 describe()
+
+
