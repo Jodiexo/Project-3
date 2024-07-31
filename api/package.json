@@ -4,6 +4,7 @@
   "main": "app.js",
   "scripts": {
     "start": "knex migrate:latest && knex seed:run && node ./src/index.js",
+    "server": "nodemon ./server/app.js",
     "start:dev": "export NODE_ENV=development && knex migrate:latest && knex seed:run && nodemon --watch ./ ./src/server/index.js",
     "test": "jest"
   },
