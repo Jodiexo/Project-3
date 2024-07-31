@@ -1,13 +1,15 @@
+const { v4: uuidv4 } = require ('uuid');
 const express = require('express');
 // const knex = require('knex');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 // const knexConfig = require('./knexfile');
-const port = process.env.port || 5000;
-
+// const port = process.env.port || 5000;
+const bcrypt = require('bcrypt');
 const app = express();
+
 // Server start
-app.listen(port, console.log(`server running on port ${port}`));
+// app.listen(port, console.log(`server running on port ${port}`));
 
 app.use(cors());
 app.use(bodyParser.json());
@@ -64,10 +66,13 @@ app.post('/messages', async (req, res) => {
   }
 })
 // Post a new user upon sign up
-app.post('/server/users', async (req, res) => {
+app.post('/users', async (req, res) => {
   try {
     const { first_name, last_name, user_name, password, role, email } = req.body;
-    const [id] = await db('users').insert({ first_name, last_name, user_name, password, role, email }).returning('id');
+    // incorporate bcrypt password
+    const hashedPassword = await bcrypt.hash(password, 10)
+    const id = uuidv4();
+    await db('users').insert({ id, first_name, last_name, user_name, hashedPassword, role, email });
     const newUser = await db('users').where({ id }).first();
     res.status(201).json(newUser);
   } catch (error) {
@@ -76,6 +81,6 @@ app.post('/server/users', async (req, res) => {
 })
 
 const authRoutes = require('./routes/auth'); //checks if user password matches via routes
-app.use('/fix route', authRoutes);
+app.use('/users', authRoutes);
 
 module.exports = app;
