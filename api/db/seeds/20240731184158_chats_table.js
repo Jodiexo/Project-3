@@ -9,26 +9,26 @@ exports.seed = async function (knex) {
   await knex('chats').del();
   await knex('chats').insert([
     {
-      group_id: uuidv4(),
-      group_name: 'Special Chat',
+      chat_id: uuidv4(),
+      chat_name: 'Special Chat',
       created_at: new Date(),
       updated_at: new Date(),
     },
     {
-      group_id: uuidv4(),
-      group_name: '3 dudes and a canoe',
+      chat_id: uuidv4(),
+      chat_name: '3 dudes and a canoe',
       created_at: new Date(),
       updated_at: new Date(),
     },
     {
-      group_id: uuidv4(),
-      group_name: 'Purrbox',
+      chat_id: uuidv4(),
+      chat_name: 'Purrbox',
       created_at: new Date(),
       updated_at: new Date(),
     },
     {
-      group_id: uuidv4(),
-      group_name: 'Super Secret Chats',
+      chat_id: uuidv4(),
+      chat_name: 'Super Secret Chats',
       created_at: new Date(),
       updated_at: new Date(),
     },
