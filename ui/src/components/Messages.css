@@ -1,0 +1,49 @@
+.message-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.message-bubble {
+  max-width: 60%;
+  padding: 10px 15px;
+  border-radius: 15px;
+  position: relative;
+  word-wrap: break-word;
+  font-size: 16px;
+}
+
+.message-sent {
+  align-self: flex-end;
+  background-color: #007aff; /* iPhone blue */
+  color: white;
+}
+
+.message-received {
+  align-self: flex-start;
+  background-color: #e5e5ea; /* Light gray */
+  color: rgb(188, 26, 26);
+}
+
+.message-bubble::before {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+}
+
+.message-sent::before {
+  border-bottom: 10px solid #007aff;
+  top: 0;
+  right: -10px;
+  transform: rotate(45deg);
+}
+
+.message-received::before {
+  border-top: 10px solid #e5e5ea;
+  bottom: 0;
+  left: -10px;
+  transform: rotate(45deg);
+}

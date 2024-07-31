@@ -32,7 +32,7 @@ app.get('/users/:id', async (req, res) => {
 });
 // Get all chats
 app.get('/chats', (req, res) => {
-  res.send('Everyone in the Army wants to be in the Space Force');
+  res.json(['Everyone in the Army wants to be in the Space Force']);
 });
 // Get a specific chat by Id
 app.get('/chat/:id', (req, res) => {
