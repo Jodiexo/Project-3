@@ -26,7 +26,7 @@ const LoginProvider = ({ children }) => {
     try {
       newUser.id = uuidv4(); // Generate a new UUID for the user
       newUser.role = ['user']; // Set role to 'user'
-      const response = await fetch('/server/users', {
+      const response = await fetch('/users', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
