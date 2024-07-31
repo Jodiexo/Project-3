@@ -7,6 +7,10 @@ const { v4: uuidv4 } = require('uuid');
 exports.seed = async function (knex) {
   // Deletes ALL existing entries
   await knex('messages').del();
+
+  const users = await knex('users').select('id');
+  const chats = await knex('chats').select('chat_id');
+
   await knex('messages').insert([
     {
       message_id: uuidv4(),
