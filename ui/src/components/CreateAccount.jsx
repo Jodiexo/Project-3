@@ -78,7 +78,9 @@ const CreateAccount = () => {
 
   return (
     <>
-      <Button onClick={onOpen}>Create Account</Button>
+      <Button mt={4} colorScheme="blue" width="full" onClick={onOpen}>
+        Create Account
+      </Button>
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
         <ModalContent>

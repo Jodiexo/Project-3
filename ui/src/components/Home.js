@@ -2,16 +2,24 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const Home = () => {
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
   const navigate = useNavigate();
 
-  const handleLogout = (e)
+  const handleLogout = () => {
+    setIsLoggedIn(false);
+    navigate('/');
+  };
 
-
-  return(
-    <>
+  return (
+    <div>
       <h1>Home</h1>
-    </>
-  )
-}
+      {isLoggedIn ? (
+        <button onClick={handleLogout}>Logout</button>
+      ) : (
+        <p>You are logged out</p>
+      )}
+    </div>
+  );
+};
 
-export default Home
+export default Home;
