@@ -1,16 +1,12 @@
 /**
- *
- *
  * @param { import("knex").Knex } knex
  * @returns { Promise<void> }
- *
- *
- *
  */
+
 exports.up = function (knex) {
-  return knex.schema.createTable('groups', function (table) {
-    table.uuid('group_id').primary();
-    table.string('group_name').notNullable();
+  return knex.schema.createTable('chats', function (table) {
+    table.uuid('chat_id').primary();
+    table.string('chat_name').notNullable();
     table.timestamps(true, true);
   });
 };
@@ -20,5 +16,5 @@ exports.up = function (knex) {
  * @returns { Promise<void> }
  */
 exports.down = function (knex) {
-  return knex.schema.dropTable('groups');
+  return knex.schema.dropTable('chats');
 };

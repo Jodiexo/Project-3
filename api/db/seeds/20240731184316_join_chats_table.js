@@ -4,8 +4,8 @@
  */
 exports.seed = async function (knex) {
   // Deletes ALL existing entries
-  await knex('table_name').del();
-  await knex('table_name').insert([
+  await knex('chats_join').del();
+  await knex('chats_join').insert([
     {
       user_id: chats[0].chat_id,
       chat_id: users[0].user_id,

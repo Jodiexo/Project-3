@@ -8,15 +8,22 @@ exports.up = function (knex) {
     table.text('message_body').notNullable();
     table
       .uuid('receiving_uid')
-      .references('users')
+      .references('id')
+      .inTable('users')
       .onDelete('CASCADE')
       .nullable();
     table
       .uuid('sending_uid')
-      .references('users')
+      .references('id')
+      .inTable('users')
       .onDelete('CASCADE')
       .notNullable();
-    table.uuid('group_id').references('groups').onDelete('CASCADE').nullable();
+    table
+      .uuid('chat_id')
+      .references('chat_id')
+      .inTable('chats')
+      .onDelete('CASCADE')
+      .nullable();
     table.timestamps(true, true);
   });
 };
