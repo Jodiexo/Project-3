@@ -1,10 +1,6 @@
 const request = require('supertest')
-<<<<<<< HEAD:api/server/app.test.js
 const app = require('./app.js')
 const { TextSnippet } = require('@mui/icons-material')
-=======
-const app = require('../app.js')
->>>>>>> main:api/test/app.test.js
 
 // beforeAll(async () => {
 //   await knex.migrate.latest();
@@ -38,14 +34,8 @@ describe('GET /users/1', () => {
 
 describe('GET /admin/users', () => {
 
-<<<<<<< HEAD:api/server/app.test.js
 })
 
 describe('', () => {
-  
+
 })
-=======
-describe()
-
-
->>>>>>> main:api/test/app.test.js

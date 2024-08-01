@@ -1,5 +1,4 @@
 import { createContext, useState } from 'react';
-import { v4 as uuidv4 } from 'uuid';
 
 const LoginContext = createContext({
   first_name: '',
@@ -25,7 +24,7 @@ const LoginProvider = ({ children }) => {
   const createUser = async (newUser) => {
     try {
       newUser.role = ['user']; // Set role to 'user'
-      const response = await fetch('http://localhost:8080/users', {
+      const response = await fetch('http://localhost:8080/users/create', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

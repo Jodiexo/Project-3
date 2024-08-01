@@ -26,7 +26,10 @@ const Home = () => {
   useEffect(() => {
     if (location.state?.currentView) {
       setCurrentView(location.state.currentView);
-      setSelectedContact({ username: location.state.username, customName: location.state.customName });
+      setSelectedContact({
+        username: location.state.username,
+        customName: location.state.customName,
+      });
     }
   }, [location.state]);
 
@@ -63,7 +66,9 @@ const Home = () => {
 
 const Messages = ({ selectedContact }) => (
   <Box className="home-messages">
-    <Heading as="h2">Messages {selectedContact && `with ${selectedContact.customName}`}</Heading>
+    <Heading as="h2">
+      Messages {selectedContact && `with ${selectedContact.customName}`}
+    </Heading>
     <MessageFetch contact={selectedContact} />
   </Box>
 );

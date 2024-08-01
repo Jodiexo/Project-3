@@ -1,5 +1,12 @@
 import React from 'react';
-import { FaSun, FaMoon, FaDoorOpen, FaComments, FaUsers, FaAddressBook } from 'react-icons/fa';
+import {
+  FaSun,
+  FaMoon,
+  FaDoorOpen,
+  FaComments,
+  FaUsers,
+  FaAddressBook,
+} from 'react-icons/fa';
 import './NavBar.css';
 
 const NavBar = ({ darkMode, toggleDarkMode, setCurrentView, handleLogout }) => {
@@ -39,6 +46,3 @@ const NavBar = ({ darkMode, toggleDarkMode, setCurrentView, handleLogout }) => {
 };
 
 export default NavBar;
-
-
-

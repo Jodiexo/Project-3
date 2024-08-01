@@ -1,5 +1,13 @@
 import React, { useState } from 'react';
-import { Box, Button, FormControl, FormLabel, Input, VStack, Heading } from '@chakra-ui/react';
+import {
+  Box,
+  Button,
+  FormControl,
+  FormLabel,
+  Input,
+  VStack,
+  Heading,
+} from '@chakra-ui/react';
 import Swal from 'sweetalert2';
 import './Contacts.css';
 import { useNavigate } from 'react-router-dom';
@@ -33,29 +41,42 @@ const Contacts = () => {
   };
 
   const handleContactClick = (username, customName) => {
-  
-    navigate('/home', { state: { currentView: 'messages', username, customName } });
+    navigate('/home', {
+      state: { currentView: 'messages', username, customName },
+    });
   };
 
   return (
     <Box className="contacts-container">
       {view === 'list' ? (
         <>
-          <Heading as="h2" mb={6} className="contacts-heading">Contacts</Heading>
+          <Heading as="h2" mb={6} className="contacts-heading">
+            Contacts
+          </Heading>
           <Box className="contacts-list">
             <ul>
               {contacts.map((contact, index) => (
-                <li key={index} className="contacts-list-item" onClick={() => handleContactClick(contact.username, contact.customName)}>
+                <li
+                  key={index}
+                  className="contacts-list-item"
+                  onClick={() =>
+                    handleContactClick(contact.username, contact.customName)
+                  }
+                >
                   {contact.customName} ({contact.username})
                 </li>
               ))}
             </ul>
           </Box>
-          <Button colorScheme="blue" onClick={() => setView('add')}>Add New Contact</Button>
+          <Button colorScheme="blue" onClick={() => setView('add')}>
+            Add New Contact
+          </Button>
         </>
       ) : (
         <form onSubmit={handleAddContact} className="contacts-form">
-          <Heading as="h2" mb={6} className="contacts-heading">Add New Contact</Heading>
+          <Heading as="h2" mb={6} className="contacts-heading">
+            Add New Contact
+          </Heading>
           <VStack spacing={4}>
             <FormControl id="username" isRequired>
               <FormLabel className="contacts-label">Username</FormLabel>
@@ -75,8 +96,21 @@ const Contacts = () => {
                 onChange={(e) => setCustomName(e.target.value)}
               />
             </FormControl>
-            <Button type="submit" colorScheme="blue" width="full" className="contacts-button">Add Contact</Button>
-            <Button colorScheme="gray" width="full" onClick={() => setView('list')}>Cancel</Button>
+            <Button
+              type="submit"
+              colorScheme="blue"
+              width="full"
+              className="contacts-button"
+            >
+              Add Contact
+            </Button>
+            <Button
+              colorScheme="gray"
+              width="full"
+              onClick={() => setView('list')}
+            >
+              Cancel
+            </Button>
           </VStack>
         </form>
       )}
@@ -85,6 +119,3 @@ const Contacts = () => {
 };
 
 export default Contacts;
-
-
-

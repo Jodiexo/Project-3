@@ -23,7 +23,7 @@ const Login = () => {
     e.preventDefault();
 
     try {
-      const response = await fetch('/users', {
+      const response = await fetch('http://localhost:8080/auth/login', {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
