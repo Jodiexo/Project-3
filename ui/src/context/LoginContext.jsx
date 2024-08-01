@@ -1,4 +1,4 @@
-import React, { createContext, useState } from 'react';
+import { createContext, useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 
 const LoginContext = createContext({
@@ -16,7 +16,7 @@ const LoginProvider = ({ children }) => {
   const [user, setUser] = useState({
     first_name: '',
     last_name: '',
-    user_name: '',
+    user_name: 'Example UserName',
     password: '',
     role: [],
     email: '',
@@ -26,7 +26,7 @@ const LoginProvider = ({ children }) => {
     try {
       newUser.id = uuidv4(); // Generate a new UUID for the user
       newUser.role = ['user']; // Set role to 'user'
-      const response = await fetch('/users', {
+      const response = await fetch('http://localhost:8080/sign', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

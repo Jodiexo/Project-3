@@ -1,4 +1,4 @@
-body {
+.login-container {
   font-family: 'Arial', sans-serif;
   background-color: #f0f8ff;
   display: flex;
@@ -6,9 +6,15 @@ body {
   align-items: center;
   height: 100vh;
   margin: 0;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-.login-container {
+.login-container.dark {
+  background-color: #333;
+  color: #f0f8ff;
+}
+
+.login-box {
   background-color: #ffffff;
   padding: 40px;
   border-radius: 10px;
@@ -16,17 +22,81 @@ body {
   text-align: center;
   max-width: 400px;
   width: 100%;
+  position: relative;
 }
 
-h1 {
+.login-box.dark {
+  background-color: #333;
+  color: #f0f8ff;
+}
+
+.login-heading {
   color: #333;
   margin-bottom: 20px;
 }
 
-form {
+.login-heading.dark {
+  color: #f0f8ff;
+}
+
+.login-form {
   display: flex;
   flex-direction: column;
 }
+
+.login-label {
+  margin-bottom: 5px;
+  color: #555;
+}
+
+.login-label.dark {
+  color: #f0f8ff;
+}
+
+.login-input {
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.login-input.dark {
+  background-color: #555;
+  color: #f0f8ff;
+  border: 1px solid #777;
+}
+
+.login-button {
+  padding: 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: 10px;
+}
+
+.login-button:hover {
+  background-color: #0056b3;
+}
+
+.login-create-account {
+  background-color: #28a745;
+}
+
+.login-create-account:hover {
+  background-color: #218838;
+}
+
+.login-theme-toggle {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  cursor: pointer;
+  font-size: 24px;
+}
+
 
 label {
   margin-bottom: 5px;
