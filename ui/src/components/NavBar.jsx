@@ -14,7 +14,7 @@ const NavBar = ({ darkMode, toggleDarkMode, setCurrentView, handleLogout }) => {
     <nav className="navbar">
       <ul className="navbar-bottom">
         <li>
-          <button onClick={() => setCurrentView('messages')}>
+          <button onClick={() => setCurrentView('chats')}>
             <FaComments size={24} />
             <span>Chats</span>
           </button>

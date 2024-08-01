@@ -1,79 +1,54 @@
-import React, { createContext, useState, useEffect } from 'react';
+import { createContext, useState } from 'react';
 
 const MessageContext = createContext({
-  message_id: '',
-  message_body: '',
-  sending_id: '',
-  receiving_id: '',
-  chat_id: '',
-  setMessage: () => {},
-  createMessage: async () => {},
-  fetchMessages: async () => {},
   messages: [],
+  fetchMessages: () => {},
+  createMessage: () => {},
 });
 
 const MessageProvider = ({ children }) => {
-  const [message, setMessage] = useState({
-    message_id: '',
-    message_body: '',
-    sending_id: '',
-    receiving_id: '',
-    chat_id: '',
-  });
-
   const [messages, setMessages] = useState([]);
-  const [loading, setLoading] = useState(true);
 
-  const fetchMessages = async () => {
+  const fetchMessages = async (userId) => {
     try {
-      const response = await fetch('http://localhost:8080/messages');
-      if (!response.ok) {
-        console.log(`Failed to fetch messges`);
+      const response = await fetch(
+        `http://localhost:8080/messages/user/${userId}`,
+      );
+      if (response.ok) {
+        const data = await response.json();
+        setMessages(data);
+      } else {
+        console.error('Failed to fetch messages');
       }
-      const data = await response.json();
-      setMessages(data);
-      setLoading(false);
     } catch (error) {
-      console.error(error);
-      setLoading(false);
+      console.error('Error fetching messages:', error);
     }
   };
 
-  useEffect(() => {
-    fetchMessages();
-  }, []);
-
   const createMessage = async (newMessage) => {
     try {
-      console.log('createMessage has been triggered with:', newMessage);
-      const response = await fetch('http://localhost:8080/messages/', {
+      const response = await fetch('http://localhost:8080/messages', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(newMessage),
       });
-
-      if (!response.ok) {
-        throw new Error('Post request failed');
+      if (response.ok) {
+        fetchMessages(newMessage.sending_id); // Refresh messages after creating a new one
+      } else {
+        console.error('Failed to create message');
       }
-
-      const data = await response.json();
-
-      setMessage((prevMessages) => [...prevMessages, data]);
-
-      console.log(data.message);
     } catch (error) {
       console.error('Error creating message:', error);
     }
   };
-  return (
-    // passing the user props created on line 17 and functions from lines 12/13
-    <MessageContext.Provider
-      value={{ ...message, setMessage, createMessage, fetchMessages }}
-    >{children}
 
+  return (
+    <MessageContext.Provider value={{ messages, fetchMessages, createMessage }}>
+      {children}
     </MessageContext.Provider>
   );
 };
+
 export { MessageContext, MessageProvider };

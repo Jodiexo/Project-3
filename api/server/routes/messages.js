@@ -5,10 +5,11 @@ const knex = require('knex')(
   require('../../knexfile.js')[process.env.NODE_ENV || 'development'],
 );
 
-router.get('/', (req, res) => {
+router.get('/users/:userId', (req, res) => {
   knex('messages')
     .select('*')
-    .where(recieving_id === user_id || sending_id === user_id)
+    .where('recieving_id', user_id)
+    .orWhere('sending_id', user_id)
     .then((data) => res.status(200).json(data))
     .catch((err) =>
       res.status(404).json({
