@@ -1,5 +1,5 @@
-const router = express.Router();
 const express = require('express');
+const router = express.Router();
 const bcrypt = require('bcrypt');
 const knex = require('knex')(
   require('../../knexfile.js')[process.env.NODE_ENV || 'development'],

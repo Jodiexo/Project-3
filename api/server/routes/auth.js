@@ -6,6 +6,8 @@ const router = express.Router();
 router.post('/login', async (req, res) => {
   const { user_name, password } = req.body;
 
+  console.log('Received login request:', req.body); // Add this line
+
   try {
     const user = await findUserByUsername(user_name);
 

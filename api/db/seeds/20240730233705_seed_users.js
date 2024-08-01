@@ -7,6 +7,7 @@ exports.seed = async function (knex) {
 
   // Hash the password
   const hashedPassword = await bcrypt.hash('password123', 10);
+  const hashedPasswordForUserA = await bcrypt.hash('a', 10);
 
   await knex('users').insert([
     {
@@ -47,7 +48,7 @@ exports.seed = async function (knex) {
       first_name: 'a',
       last_name: 'a',
       user_name: 'a',
-      password: 'a',
+      password: hashedPasswordForUserA,
       email: 'a@a.com',
       role: ['admin', 'user', 'moderator'],
       created_at: new Date(),

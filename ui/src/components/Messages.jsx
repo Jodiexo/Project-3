@@ -14,7 +14,6 @@ const MessageFetch = () => {
   const { user_name } = useContext(LoginContext);
 
   useEffect(() => {
-    console.log('Username from context:', user_name);
     const fetchmessages = async () => {
       try {
         const response = await fetch('http://localhost:8080/chats');
@@ -25,8 +24,6 @@ const MessageFetch = () => {
           setError('Failed to fetch messages');
         }
       } catch (error) {
-        console.log(messages);
-        console.error(error);
         setError('An error occured while attempting to fetch messages');
       } finally {
         setLoading(false);

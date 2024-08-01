@@ -22,17 +22,19 @@ const Login = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
 
+    const loginData = { user_name: username, password };
+    console.log('Sending login request with data:', loginData); // Add this line
+
     try {
       const response = await fetch('http://localhost:8080/auth/login', {
-        method: 'GET',
+        method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ username, password }),
+        body: JSON.stringify(loginData),
       });
 
       if (response.ok) {
-        const data = await response.json();
         Swal.fire({
           title: 'Success!',
           text: 'Login successful',
@@ -80,6 +82,7 @@ const Login = () => {
               type="text"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
+              autoComplete="username"
             />
           </FormControl>
           <FormControl id="password" isRequired>
@@ -88,6 +91,7 @@ const Login = () => {
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
+              autoComplete="current-password"
             />
           </FormControl>
           <Button type="submit" colorScheme="blue" width="full">
@@ -95,7 +99,10 @@ const Login = () => {
           </Button>
         </VStack>
       </form>
-      <CreateAccount isOpen={isOpen} onClose={onClose} onOpen={onOpen} />
+      <Button mt={4} colorScheme="blue" width="full" onClick={onOpen}>
+        Create Account
+      </Button>
+      <CreateAccount isOpen={isOpen} onClose={onClose} />
     </Box>
   );
 };

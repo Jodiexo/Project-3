@@ -17,13 +17,13 @@ const LoginProvider = ({ children }) => {
     last_name: '',
     user_name: 'Example UserName',
     password: '',
-    role: [],
+    role: '',
     email: '',
   });
 
   const createUser = async (newUser) => {
     try {
-      newUser.role = ['user']; // Set role to 'user'
+      newUser.role = 'user'; // Set role to 'user'
       const response = await fetch('http://localhost:8080/users/create', {
         method: 'POST',
         headers: {

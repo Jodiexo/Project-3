@@ -1,9 +1,8 @@
-const router = express.Router();
 const express = require('express');
+const router = express.Router();
 const knex = require('knex')(
   require('../../knexfile.js')[process.env.NODE_ENV || 'development'],
 );
-
 
 // Get all chats
 router.get('/', (req, res) => {
@@ -33,15 +32,15 @@ router.get('/:id', (req, res) => {
 });
 
 router.post('/messages', (req, res) => {
-    const { content, user_id, chat_id } = req.body;
-    knex('messages')
-      .insert({ content: content, user_id: user_id, chat_id: chat_id })
-      .then((data) => res.status(201).json(data))
-      .catch((err) =>
-        res.status(503).json({
-          message: 'Post request failed. Please try again.',
-        }),
-      );
-  });
+  const { content, user_id, chat_id } = req.body;
+  knex('messages')
+    .insert({ content: content, user_id: user_id, chat_id: chat_id })
+    .then((data) => res.status(201).json(data))
+    .catch((err) =>
+      res.status(503).json({
+        message: 'Post request failed. Please try again.',
+      }),
+    );
+});
 
-  module.exports = router;
+module.exports = router;
