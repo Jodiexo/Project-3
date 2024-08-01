@@ -5,6 +5,7 @@ import { Box, Heading } from '@chakra-ui/react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import MessageFetch from './Messages';
 import Contacts from './Contacts';
+import DiscoverGroupChats from './GroupChat';
 
 const Home = () => {
   const [darkMode, setDarkMode] = useState(false);
@@ -38,7 +39,7 @@ const Home = () => {
       case 'messages':
         return <Messages selectedContact={selectedContact} />;
       case 'discover':
-        return <Discover />;
+        return <DiscoverGroupChats />;
       case 'contacts':
         return <Contacts />;
       default:

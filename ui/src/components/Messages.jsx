@@ -14,10 +14,12 @@ const MessageFetch = () => {
   const { user_name } = useContext(LoginContext);
 
   useEffect(() => {
-    const fetchmessages = async () => {
+    const fetchMessages = async () => {
       try {
+        console.log(`fetching chats with fetchMessages`);
         const response = await fetch('http://localhost:8080/chats');
         if (response.ok) {
+          console.log(response);
           const data = await response.json();
           setMessages(data);
         } else {
@@ -29,17 +31,26 @@ const MessageFetch = () => {
         setLoading(false);
       }
     };
-    fetchmessages();
+    fetchMessages();
   }, []);
 
   const handleSendMessage = () => {
     if (newMessage.trim()) {
-      setMessages((prevMessages) => [...prevMessages, newMessage]);
+      const newMsgObject = {
+        chat_id: '',
+        chat_name: newMessage,
+        created_at: '',
+        updated_at: '',
+      };
+      setMessages((prevMessages) => [...prevMessages, newMsgObject]);
       setNewMessage('');
     }
   };
 
   if (loading) {
+    console.log(`loading: ${loading}`);
+    console.log(`messages: ${messages}`);
+    console.log(`da error: ${error}`);
     return <p>LOADING...</p>;
   }
   if (error) {
@@ -74,9 +85,9 @@ const MessageFetch = () => {
           <VStack spacing={3} align="start">
             <ul style={{ listStyleType: 'none', padding: 0 }}>
               {messages.map((message, index) => (
-                <li onClick={() => navigate('/home')} key={index}>
+                <li onClick={() => navigate('/:chat_id')} key={index}>
                   <strong>{user_name}: </strong>
-                  {message}
+                  {message.chat_name}
                 </li>
                 ///for moving to 1-1 chat <li onClick={() => navigate('/chat/message.uuid')} key={index}>{message}</li>
               ))}

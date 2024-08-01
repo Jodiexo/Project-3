@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcrypt');
+const { v4: uuidv4 } = require('uuid');
 const knex = require('knex')(
   require('../../knexfile.js')[process.env.NODE_ENV || 'development'],
 );
@@ -32,29 +33,36 @@ router.get('/:id', (req, res) => {
     );
 });
 
-router.post('/create', (req, res) => {
+router.post('/', async (req, res) => {
   const { first_name, last_name, user_name, password, role, email } = req.body;
-  bcrypt
-    .hash(password, 10)
-    .then((hashedPassword) => {
-      const id = uuidv4();
-      return knex('users').insert({
-        id,
-        first_name,
-        last_name,
-        user_name,
-        password: hashedPassword,
-        email,
-        role,
-      });
-    })
-    .then((data) => res.status(201).json(data))
-    .catch((err) => {
-      console.error('Error creating user:', err);
-      res.status(503).json({
-        message: 'Post request failed. Please try again.',
-      });
+  console.log('Received request to make account:', req.body);
+
+  try {
+    const existingUser = await knex('users').where({ user_name }).first();
+
+    if (existingUser) {
+      console.log(`Username: ${user_name} already exist`);
+      return;
+    }
+    const hashedPassword = await bcrypt.hash(password, 10);
+    const id = uuidv4();
+
+    await knex('users').insert({
+      id: id,
+      first_name: first_name,
+      last_name: last_name,
+      user_name: user_name,
+      password: hashedPassword,
+      email: email,
+      role: role,
     });
+    console.log(`Username: ${user_name} was made successfully`);
+    res.status(201).json({ data });
+  } catch (err) {
+    res.status(503).json({
+      message: 'Post request failed. Please try again.',
+    });
+  }
 });
 
 module.exports = router;

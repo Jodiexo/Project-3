@@ -22,7 +22,7 @@ exports.seed = async function (knex) {
     },
     {
       chat_id: uuidv4(),
-      chat_name: 'Purrbox',
+      chat_name: 'Possummobile',
       created_at: new Date(),
       updated_at: new Date(),
     },

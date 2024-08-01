@@ -37,6 +37,10 @@ const CreateAccount = ({ isOpen, onClose }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      console.log(
+        'createUser was triggered by handleSubmit:',
+        createUser(userDetails),
+      );
       await createUser(userDetails);
       Swal.fire({
         title: 'Success!',
