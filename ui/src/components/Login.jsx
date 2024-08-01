@@ -24,7 +24,7 @@ const Login = () => {
 
     try {
       const response = await fetch('/users', {
-        method: 'POST',
+        method: 'GET',
         headers: {
           'Content-Type': 'application/json',
         },

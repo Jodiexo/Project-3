@@ -42,5 +42,16 @@ exports.seed = async function (knex) {
       created_at: new Date(),
       updated_at: new Date(),
     },
+    {
+      id: uuidv4(),
+      first_name: 'a',
+      last_name: 'a',
+      user_name: 'a',
+      password: a,
+      email: 'a@a.com',
+      role: ['admin'],
+      created_at: new Date(),
+      updated_at: new Date(),
+    },
   ]);
 };
