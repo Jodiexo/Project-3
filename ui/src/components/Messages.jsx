@@ -3,9 +3,11 @@ import { Box, Button, Heading, VStack, HStack, Input } from '@chakra-ui/react';
 import { useNavigate } from 'react-router-dom';
 import Login from './Login';
 import { LoginContext } from '../context/LoginContext';
+import { MessageContext } from '../context/MessageContext';
 import './Messages.css';
 
 const MessageFetch = () => {
+  const { user_id } = useContext(MessageContext);
   const [messages, setMessages] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState();
@@ -48,9 +50,6 @@ const MessageFetch = () => {
   };
 
   if (loading) {
-    console.log(`loading: ${loading}`);
-    console.log(`messages: ${messages}`);
-    console.log(`da error: ${error}`);
     return <p>LOADING...</p>;
   }
   if (error) {
@@ -85,11 +84,11 @@ const MessageFetch = () => {
           <VStack spacing={3} align="start">
             <ul style={{ listStyleType: 'none', padding: 0 }}>
               {messages.map((message, index) => (
-                <li onClick={() => navigate('/:chat_id')} key={index}>
+                <li onClick={() => navigate(`/${message.chat_id}`)} key={index}>
+                  {console.log(message)}
                   <strong>{user_name}: </strong>
                   {message.chat_name}
                 </li>
-                ///for moving to 1-1 chat <li onClick={() => navigate('/chat/message.uuid')} key={index}>{message}</li>
               ))}
             </ul>
           </VStack>

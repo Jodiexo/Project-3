@@ -16,9 +16,11 @@ app.get('/', (req, res) => {
 const authRoutes = require('./routes/auth');
 const userRoutes = require('./routes/users');
 const chatRoutes = require('./routes/chats');
+const msgRoutes = require('./routes/messages');
 
 app.use('/auth', authRoutes);
 app.use('/users', userRoutes);
 app.use('/chats', chatRoutes);
+app.use('/messages', msgRoutes);
 
 module.exports = app;
