@@ -33,8 +33,8 @@ router.post('/', async (req, res) => {
 
 // Get all chats
 router.get('/', (req, res) => {
-  const { id } = req.head;
-  const { body } = req.body;
+  const { id } = req.params.head;
+  const { body } = req.params.body;
   knex('chats')
     .select('*')
     .where(id === chat_id && body === chat_name)
