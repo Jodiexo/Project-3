@@ -3,11 +3,11 @@ import {
   FaSun,
   FaMoon,
   FaDoorOpen,
+  FaEnvelope,
   FaComments,
-  FaUsers,
   FaAddressBook,
 } from 'react-icons/fa';
-import './NavBar.css';
+import '../styles/NavBar.css';
 
 const NavBar = ({ darkMode, toggleDarkMode, setCurrentView, handleLogout }) => {
   return (
@@ -20,9 +20,9 @@ const NavBar = ({ darkMode, toggleDarkMode, setCurrentView, handleLogout }) => {
           </button>
         </li>
         <li>
-          <button onClick={() => setCurrentView('discover')}>
-            <FaUsers size={24} />
-            <span>Discover Groups</span>
+          <button onClick={() => setCurrentView('messages')}>
+            <FaEnvelope size={24} />
+            <span>Direct Messages</span>
           </button>
         </li>
         <li className="theme-toggle" onClick={toggleDarkMode}>
@@ -46,3 +46,8 @@ const NavBar = ({ darkMode, toggleDarkMode, setCurrentView, handleLogout }) => {
 };
 
 export default NavBar;
+
+
+
+
+

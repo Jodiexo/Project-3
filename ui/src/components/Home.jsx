@@ -1,22 +1,19 @@
 import React, { useState, useEffect } from 'react';
-import './Home.css';
+import '../styles/Home.css';
 import NavBar from './NavBar';
-import { Box, Heading } from '@chakra-ui/react';
+import { Box, Heading, VStack } from '@chakra-ui/react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import MessageFetch from './Messages';
 import Contacts from './Contacts';
-import DiscoverGroupChats from './GroupChat';
+import DMs from './DMs'; 
 
 const Home = () => {
   const [darkMode, setDarkMode] = useState(false);
   const [currentView, setCurrentView] = useState('messages');
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
   const [selectedContact, setSelectedContact] = useState(null);
   const navigate = useNavigate();
   const location = useLocation();
 
   const handleLogout = () => {
-    setIsLoggedIn(false);
     navigate('/');
   };
 
@@ -37,23 +34,23 @@ const Home = () => {
   const renderView = () => {
     switch (currentView) {
       case 'messages':
-        return <Messages selectedContact={selectedContact} />;
-      case 'discover':
-        return <DiscoverGroupChats />;
+        return <DMs selectedContact={selectedContact} />;
       case 'contacts':
         return <Contacts />;
+      case 'chats':
+        return <Heading as="h2">Chats</Heading>;
       default:
-        return <Messages />;
+        return <DMs selectedContact={selectedContact} />;
     }
   };
 
   return (
-    <Box className={darkMode ? 'home-container dark' : 'home-container'}>
-      <Heading as="h1" textAlign="center">
+    <VStack className={darkMode ? 'home-container dark' : 'home-container'} spacing={6}>
+      <Heading as="h1" textAlign="center" mt={6}>
         Home
       </Heading>
-      <Box mt={4}>
-        {renderView()} {}
+      <Box mt={4} width="full" maxW="xl">
+        {renderView()}
       </Box>
       <NavBar
         darkMode={darkMode}
@@ -61,23 +58,9 @@ const Home = () => {
         setCurrentView={setCurrentView}
         handleLogout={handleLogout}
       />
-    </Box>
+    </VStack>
   );
 };
 
-const Messages = ({ selectedContact }) => (
-  <Box className="home-messages">
-    <Heading as="h2">
-      Messages {selectedContact && `with ${selectedContact.customName}`}
-    </Heading>
-    <MessageFetch contact={selectedContact} />
-  </Box>
-);
-
-const Discover = () => (
-  <Box className="home-discover">
-    <Heading as="h2">Discover Groups</Heading>
-  </Box>
-);
-
 export default Home;
+

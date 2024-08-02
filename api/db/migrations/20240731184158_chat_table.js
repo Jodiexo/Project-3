@@ -1,8 +1,3 @@
-/**
- * @param { import("knex").Knex } knex
- * @returns { Promise<void> }
- */
-
 exports.up = function (knex) {
   return knex.schema.createTable('chats', function (table) {
     table.uuid('chat_id').primary();

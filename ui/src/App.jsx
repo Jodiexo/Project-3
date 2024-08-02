@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import Login from './components/Login';
-import CreateAccount from './components/CreateAccount';
+import CreateAccount from './utils/CreateAccount';
 import Home from './components/Home';
 import { Box, Heading } from '@chakra-ui/react';
 // import NonfetchLogin from './components/NonfetchLogin';

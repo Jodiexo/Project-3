@@ -7,13 +7,13 @@ exports.up = function (knex) {
     table.uuid('message_id').primary();
     table.text('message_body').notNullable();
     table
-      .uuid('receiving_uid')
+      .uuid('receiving_id')
       .references('id')
       .inTable('users')
       .onDelete('CASCADE')
       .nullable();
     table
-      .uuid('sending_uid')
+      .uuid('sending_id')
       .references('id')
       .inTable('users')
       .onDelete('CASCADE')

@@ -7,6 +7,7 @@ const LoginContext = createContext({
   password: '',
   role: [],
   email: '',
+  isLoggedIn: false,
   setUser: () => {},
   createUser: async () => {},
 });
@@ -19,6 +20,7 @@ const LoginProvider = ({ children }) => {
     password: '',
     role: [],
     email: '',
+    isLoggedIn: false,
   });
 
   const createUser = async (newUser) => {
@@ -44,9 +46,37 @@ const LoginProvider = ({ children }) => {
       console.error('Error creating user:', error);
     }
   };
+  const loginUser = async (credentials) => {
+    try {
+      const response = await fetch('http://localhost:8080/auth/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(credentials),
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.message);
+      }
+
+      const data = await response.json();
+      setUser((prevUser) => ({
+        ...prevUser,
+        ...data.user,
+        isLoggedIn: true,
+      }));
+    } catch (error) {
+      console.error('Error during login:', error);
+      throw error;
+    }
+  };
+
+
   return (
     // passing the user props created on line 17 and functions from lines 12/13
-    <LoginContext.Provider value={{ ...user, setUser, createUser }}>
+    <LoginContext.Provider value={{ ...user, setUser, createUser, loginUser }}>
       {children}
     </LoginContext.Provider>
   );

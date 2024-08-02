@@ -3,7 +3,7 @@
   background-color: #f0f8ff;
   min-height: 100vh;
   padding: 20px;
-  padding-bottom: 60px; /* Extra space for the navbar */
+  padding-bottom: 60px; 
   transition: background-color 0.3s ease;
 }
 

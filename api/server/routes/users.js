@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const bcrypt = require('bcrypt');
+// const bcrypt = require('bcrypt');
 const { v4: uuidv4 } = require('uuid');
 const knex = require('knex')(
   require('../../knexfile.js')[process.env.NODE_ENV || 'development'],
@@ -36,7 +36,7 @@ router.get('/:id', (req, res) => {
 router.post('/', async (req, res) => {
   const { first_name, last_name, user_name, password, role, email } = req.body;
   console.log('Received request to make account:', req.body);
-
+ 
   try {
     const existingUser = await knex('users').where({ user_name }).first();
 
@@ -44,7 +44,7 @@ router.post('/', async (req, res) => {
       console.log(`Username: ${user_name} already exist`);
       return;
     }
-    const hashedPassword = await bcrypt.hash(password, 10);
+    // const hashedPassword = await bcrypt.hash(password, 10);
     const id = uuidv4();
 
     await knex('users').insert({
@@ -52,7 +52,7 @@ router.post('/', async (req, res) => {
       first_name: first_name,
       last_name: last_name,
       user_name: user_name,
-      password: hashedPassword,
+      password: password,
       email: email,
       role: role,
     });

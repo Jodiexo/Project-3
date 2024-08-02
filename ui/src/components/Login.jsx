@@ -10,7 +10,7 @@ import {
   VStack,
   useDisclosure,
 } from '@chakra-ui/react';
-import CreateAccount from './CreateAccount';
+import CreateAccount from '../utils/CreateAccount';
 import Swal from 'sweetalert2';
 
 const Login = () => {

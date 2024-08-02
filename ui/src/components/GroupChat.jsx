@@ -7,7 +7,6 @@ import {
   VStack,
   HStack,
   Text,
-  Stack,
   useBreakpointValue,
 } from '@chakra-ui/react';
 

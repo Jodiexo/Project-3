@@ -21,4 +21,13 @@ exports.up = function (knex) {
  */
 exports.down = function (knex) {
   return knex.schema.dropTable('chats_join');
-};
+};//       updated_at: new Date(),
+//     },
+//     {
+//       chat_id: group_chats[1].groupchat_id,
+//       user_id: users[2].id,
+//       created_at: new Date(),
+//       updated_at: new Date(),
+//     },
+//   ]);
+// };

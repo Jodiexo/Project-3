@@ -9,7 +9,7 @@ import {
   Heading,
 } from '@chakra-ui/react';
 import Swal from 'sweetalert2';
-import './Contacts.css';
+import '../styles/Contacts.css';
 import { useNavigate } from 'react-router-dom';
 
 const Contacts = () => {
@@ -119,3 +119,4 @@ const Contacts = () => {
 };
 
 export default Contacts;
+

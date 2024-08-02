@@ -5,15 +5,18 @@ const knex = require('knex')(
   require('../../knexfile.js')[process.env.NODE_ENV || 'development'],
 );
 
-router.get('/users/:userId', (req, res) => {
+router.get('/users/:userId/messages', (req, res) => {
+  const user_id = req.params.userId;
+
   knex('messages')
     .select('*')
-    .where('recieving_id', user_id)
+    .where('receiving_id', user_id)
     .orWhere('sending_id', user_id)
     .then((data) => res.status(200).json(data))
     .catch((err) =>
       res.status(404).json({
         message: 'We could not find your messages. Please try again',
+        error: err.message,
       }),
     );
 });
@@ -32,6 +35,7 @@ router.post('/', async (req, res) => {
       return;
     }
     const id = uuidv4();
+
 
     await knex('users').insert({
       message_id: id,
